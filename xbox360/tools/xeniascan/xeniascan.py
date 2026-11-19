@@ -190,6 +190,11 @@ def load_elf(path, d):
             img.restgprlr.add(value)
         if info & 0xF != 2:                            # STT_FUNC
             continue
+        # Microsoft's compiler names its branch targets $LN..., and the XDK's
+        # objects come through as local, unsized functions of that name. They
+        # are labels inside a function, not functions.
+        if info >> 4 == 0 and not size and name.startswith('$'):
+            continue
         if not any(a <= value < b for a, b in img.ranges()):
             continue
         # Prefer a sized symbol when two share an address.
