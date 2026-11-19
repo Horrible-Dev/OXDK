@@ -70,7 +70,7 @@ Microsoft's compiler does: aggregates of 1, 2, 4 or 8 bytes returned in r3,
 aggregates of up to 8 bytes passed as their bytes in one register, and `char`
 and `short` arguments and results not assumed extended.
 
-Together they are about 1,000 added lines across 15 files.
+Together they are about 900 added lines across 13 files.
 
 Patches 2 and 3 both need a 64 bit register on a 32 bit subtarget, which Xenon
 has and LLVM otherwise gates on PPC64. Both work the same way: the value is
